@@ -80,11 +80,20 @@ public class GildedRose {
                 {
                     if (!"Backstage passes to a TAFKAL80ETC concert".equals(items.get(i).getName()))
                     {
-                        if (items.get(i).getQuality() > 0)
+                    	// Quality needs to degrade twice as fast, but can not be negative.
+                    	// Check both cases: should quality degrade by 2 when quality>=2 or be set to 0 (when quality<2)
+                        if (items.get(i).getQuality() >= 2)
                         {
                             if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
                             {
-                                items.get(i).setQuality(items.get(i).getQuality() - 1);
+                                items.get(i).setQuality(items.get(i).getQuality() - 2);
+                            }
+                        }
+                        else
+                        {
+                        	if (!"Sulfuras, Hand of Ragnaros".equals(items.get(i).getName()))
+                            {
+                                items.get(i).setQuality(0);
                             }
                         }
                     }
